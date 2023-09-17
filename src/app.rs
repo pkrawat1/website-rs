@@ -1,6 +1,7 @@
 use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
+use crate::layout::header::*;
 
 #[component]
 pub fn App(cx: Scope) -> impl IntoView {
@@ -10,10 +11,12 @@ pub fn App(cx: Scope) -> impl IntoView {
     view! { cx,
         // injects a stylesheet into the document <head>
         // id=leptos means cargo-leptos will hot-reload this stylesheet
-        <Stylesheet id="leptos" href="/pkg/leptos_start.css"/>
+        <Stylesheet id="leptos" href="/pkg/website_rs.css"/>
 
         // sets the document title
         <Title text="Welcome to Leptos"/>
+
+        <Header />
 
         // content for this welcome page
         <Router>

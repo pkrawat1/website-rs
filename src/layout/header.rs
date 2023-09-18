@@ -1,40 +1,63 @@
 use leptos::*;
 
 #[component]
-pub fn Header(cx: Scope) -> impl IntoView {
+pub fn Header(cx: Scope, theme: RwSignal<bool>) -> impl IntoView {
+    let mobile_menu = create_rw_signal(cx, false);
     let links: Vec<(&str, &str)> = vec![
-      ("Services", "/services"),
-      ("Work", "/work"),
-      ("Why Aviabird", "/why-aviabird"),
-      ("Blogs", "/blogs"),
-      ("Opensource", "/opensource"),
-      ("Contact Us", "/contact/hire-us"),
+        ("Services", "/services"),
+        ("Work", "/work"),
+        ("Why Aviabird", "/why-aviabird"),
+        ("Blogs", "/blogs"),
+        ("Opensource", "/opensource"),
+        ("Contact Us", "/contact/hire-us"),
     ];
 
     view! {cx,
-      <nav class="flex items-center justify-between flex-wrap container mx-auto p-6">
-        <div class="flex items-center flex-shrink-0 text-gray-700 mr-6">
-          <img class="h-[30px] mr-2" src="/assets/logo.jpg" />
-          <span class="font-semibold text-2xl tracking-tight">Aviabird</span>
-        </div>
-        <div class="block lg:hidden">
-          <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-indigo-600 hover:border-teal-600">
-            <i class="fa-solid fa-bars"></i>
-          </button>
-        </div>
-        <div class="w-full block flex-grow lg:flex lg:items-center lg:text-right lg:w-auto">
-          <div class="text-sm lg:flex-grow">
-            {
-              links.into_iter()
-                .map(|(name, url)| view! {cx, 
-                  <a href=url class="block mt-4 lg:inline-block lg:mt-0 text-gray-500 hover:text-gray-700 mr-8">
-                    {name}
-                  </a>
-                })
-                .collect_view(cx)
-            }
-          </div>
-        </div>
-      </nav>
+          <div class="w-full">
+            <nav class="container relative flex flex-wrap items-center justify-between p-8 mx-auto lg:justify-between xl:px-0">
+               <div class="flex flex-wrap items-center justify-between w-full lg:w-auto">
+                  <a href="/"><span class="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100"><span><img alt="N" loading="lazy" width="32" height="32" decoding="async" data-nimg="1" class="w-8" style="color:transparent" src="/assets/logo.jpg"/></span><span>Aviabird</span></span></a>
+                  <button on:click=move |_| mobile_menu.update(|v| *v = !*v) aria-label="Toggle Menu" class="px-2 py-1 ml-auto text-gray-500 rounded-md lg:hidden hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:text-gray-300 dark:focus:bg-trueGray-700" id="headlessui-disclosure-button-:R956:" type="button" aria-expanded="false" data-headlessui-state="">
+                     <svg class="w-6 h-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"></path>
+                     </svg>
+                  </button>
+                  <Show when=mobile_menu fallback=move |_| view! {cx, <div></div>}>
+                    <div class="flex flex-wrap w-full my-5 lg:hidden" id="headlessui-disclosure-panel-:Rd56:">
+                      {
+                        links.clone().into_iter()
+                          .map(|(name, url)| view! {cx,
+                            <a class="w-full px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none" href=url>
+                              {name}
+                            </a>
+                          })
+                          .collect_view(cx)
+                      }
+                    </div>
+                  </Show>
+               </div>
+               // <div class="hidden text-center lg:flex lg:items-center">
+                  // <ul class="items-center justify-end flex-1 pt-6 list-none lg:pt-0 lg:flex">
+                    // {
+                      // links.into_iter()
+                        // .map(|(name, url)| view! {cx,
+                             // <li class="mr-3 nav__item">
+                              // <a class="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800" href=url>
+                              // {name}
+                              // </a>
+                            // </li>
+                        // })
+                        // .collect_view(cx)
+                    // }
+                  // </ul>
+               // </div>
+               <div class="hidden mr-3 space-x-4 lg:flex nav__item"><a class="px-6 py-2 text-white bg-indigo-600 rounded-md md:ml-5" href="/">Get Started</a></div>
+               <button
+                    on:click=move |_| theme.update(|value| *value = !*value)
+                >
+                    "Toggle Dark"
+                </button>
+            </nav>
+         </div>
     }
 }

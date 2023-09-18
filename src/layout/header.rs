@@ -2,32 +2,39 @@ use leptos::*;
 
 #[component]
 pub fn Header(cx: Scope) -> impl IntoView {
+    let links: Vec<(&str, &str)> = vec![
+      ("Services", "/services"),
+      ("Work", "/work"),
+      ("Why Aviabird", "/why-aviabird"),
+      ("Blogs", "/blogs"),
+      ("Opensource", "/opensource"),
+      ("Contact Us", "/contact/hire-us"),
+    ];
+
     view! {cx,
-        <nav class="flex items-center justify-between flex-wrap container mx-auto p-6">
-          <div class="flex items-center flex-shrink-0 text-gray-700 mr-6">
-            <span class="font-semibold text-xl tracking-tight">Aviabird</span>
+      <nav class="flex items-center justify-between flex-wrap container mx-auto p-6">
+        <div class="flex items-center flex-shrink-0 text-gray-700 mr-6">
+          <img class="h-[30px] mr-2" src="/assets/logo.jpg" />
+          <span class="font-semibold text-2xl tracking-tight">Aviabird</span>
+        </div>
+        <div class="block lg:hidden">
+          <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-indigo-600 hover:border-teal-600">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+        <div class="w-full block flex-grow lg:flex lg:items-center lg:text-right lg:w-auto">
+          <div class="text-sm lg:flex-grow">
+            {
+              links.into_iter()
+                .map(|(name, url)| view! {cx, 
+                  <a href=url class="block mt-4 lg:inline-block lg:mt-0 text-gray-500 hover:text-gray-700 mr-8">
+                    {name}
+                  </a>
+                })
+                .collect_view(cx)
+            }
           </div>
-          <div class="block lg:hidden">
-            <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-indigo-600 hover:border-teal-600">
-              <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-            </button>
-          </div>
-          <div class="w-full block flex-grow lg:flex lg:items-center lg:text-right lg:w-auto">
-            <div class="text-sm lg:flex-grow">
-              <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-gray-500 hover:text-white mr-4">
-                Docs
-              </a>
-              <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-                Examples
-              </a>
-              <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
-                Blog
-              </a>
-            </div>
-            <div>
-              <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Download</a>
-            </div>
-          </div>
-        </nav>
-        }
+        </div>
+      </nav>
+    }
 }

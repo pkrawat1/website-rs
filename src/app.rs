@@ -1,7 +1,8 @@
+use crate::layout::header::*;
+use crate::pages::home::home::*;
 use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
-use crate::layout::header::*;
 
 #[component]
 pub fn App(cx: Scope) -> impl IntoView {
@@ -9,38 +10,27 @@ pub fn App(cx: Scope) -> impl IntoView {
     provide_meta_context(cx);
 
     view! { cx,
-        // injects a stylesheet into the document <head>
-        // id=leptos means cargo-leptos will hot-reload this stylesheet
-        <Stylesheet id="leptos" href="/pkg/website_rs.css"/>
+            // injects a stylesheet into the document <head>
+            // id=leptos means cargo-leptos will hot-reload this stylesheet
+            <Stylesheet id="leptos" href="/pkg/website_rs.css"/>
+            <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
-        // sets the document title
-        <Title text="Welcome to Leptos"/>
+            // sets the document title
+            <Title text="Welcome to Leptos"/>
 
-        <Header />
+            <Header />
 
-        // content for this welcome page
-        <Router>
-            <main>
-                <Routes>
-                    <Route path="" view=HomePage/>
-                    <Route path="/*any" view=NotFound/>
-                </Routes>
-            </main>
-        </Router>
-    }
-}
-
-/// Renders the home page of your application.
-#[component]
-fn HomePage(cx: Scope) -> impl IntoView {
-    // Creates a reactive value to update the button
-    let (count, set_count) = create_signal(cx, 0);
-    let on_click = move |_| set_count.update(|count| *count += 1);
-
-    view! { cx,
-        <h1>"Welcome to Leptos!"</h1>
-        <button on:click=on_click>"Click Me: " {count}</button>
-    }
+            // content for this welcome page
+            <Router>
+                <main>
+                    <Routes>
+                        <Route path="" view=HomePage/>
+                        <Route path="/*any" view=NotFound/>
+                    </Routes>
+                </main>
+            </Router>
+        }
 }
 
 /// 404 - Not Found

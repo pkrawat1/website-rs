@@ -1,4 +1,5 @@
 use crate::layout::header::*;
+use crate::layout::footer::*;
 use crate::pages::home::home::*;
 use leptos::*;
 use leptos_meta::*;
@@ -9,7 +10,7 @@ pub fn App(cx: Scope) -> impl IntoView {
     // Provides context that manages stylesheets, titles, meta tags, etc.
     provide_meta_context(cx);
 
-    let theme = create_rw_signal(cx, false); 
+    let dark_mode = create_rw_signal(cx, true);
 
     view! { cx,
         // injects a stylesheet into the document <head>
@@ -20,15 +21,15 @@ pub fn App(cx: Scope) -> impl IntoView {
         // sets the document title
         <Title text="Welcome to Leptos"/>
 
-        <Header theme=theme/>
-
         // content for this welcome page
         <Router>
-            <main class:dark=theme>
-                <Routes>
-                    <Route path="" view=HomePage/>
-                    <Route path="/*any" view=NotFound/>
-                </Routes>
+            <main class:dark=dark_mode class=("bg-neutral-900", dark_mode)>
+              <Header dark_mode=dark_mode/>
+              <Routes>
+                  <Route path="" view=HomePage/>
+                  <Route path="/*any" view=NotFound/>
+              </Routes>
+              <Footer />
             </main>
         </Router>
     }

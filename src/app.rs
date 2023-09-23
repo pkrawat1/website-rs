@@ -1,5 +1,5 @@
-use crate::layout::header::*;
 use crate::layout::footer::*;
+use crate::layout::header::*;
 use crate::pages::home::home::*;
 use leptos::*;
 use leptos_meta::*;
@@ -23,13 +23,15 @@ pub fn App(cx: Scope) -> impl IntoView {
 
         // content for this welcome page
         <Router>
-            <main class:dark=dark_mode class=("bg-neutral-900", dark_mode)>
-              <Header dark_mode=dark_mode/>
-              <Routes>
-                  <Route path="" view=HomePage/>
-                  <Route path="/*any" view=NotFound/>
-              </Routes>
-              <Footer />
+            <main class:dark=dark_mode>
+              <div class="dark:bg-neutral-900">
+                <Header dark_mode=dark_mode/>
+                <Routes>
+                    <Route path="" view=HomePage/>
+                    <Route path="/*any" view=NotFound/>
+                </Routes>
+                <Footer />
+              </div>
             </main>
         </Router>
     }

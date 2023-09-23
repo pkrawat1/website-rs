@@ -32,7 +32,7 @@ pub fn Footer(cx: Scope) -> impl IntoView {
                     data-nimg="1"
                     class="w-8"
                     style="color: transparent"
-                    src="/assets/logo.jpg"
+                    src="/assets/logo.png"
                   />
                   <span>Aviabird</span>
                 </a>

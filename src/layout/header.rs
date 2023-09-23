@@ -19,7 +19,7 @@ pub fn Header(cx: Scope, dark_mode: RwSignal<bool>) -> impl IntoView {
                   <span class="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
                     <span>
                       <img alt="N" loading="lazy" width="32" height="32" decoding="async" data-nimg="1" class="w-8"
-                        style="color:transparent" src="/assets/logo.jpg" />
+                        style="color:transparent" src="/assets/logo.png" />
                     </span>
                     <span>
                       Aviabird

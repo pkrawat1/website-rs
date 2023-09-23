@@ -4,6 +4,7 @@ use leptos::*;
 pub fn HomePage(cx: Scope) -> impl IntoView {
     view! { cx,
       <Banner />
+      <TrustedBy />
     }
 }
 
@@ -25,4 +26,32 @@ fn Banner(cx: Scope) -> impl IntoView {
          </div>
       </div>
     }
+}
+
+#[component]
+fn TrustedBy(cx: Scope) -> impl IntoView {
+    view! {cx,
+    <div class="flex flex-col justify-center">
+     <div class="-mb-5 mt-5 md:mb-0 text-xl text-center text-gray-700 dark:text-white">
+        "Trusted by customers worldwide"
+     </div>
+     <div class="flex flex-wrap justify-center mt-5 md:mt-0 gap-5 md:justify-around items-center">
+        <div class="text-gray-400 dark:text-gray-400 w-1/3 md:w-auto">
+          <img alt="Reevoy logo" src="/assets/bitclass.webp"  width="200" />
+        </div>
+        <div class="text-gray-400 dark:text-gray-400 w-1/3 md:w-auto">
+          <img alt="Reevoy logo" src="/assets/loantap.svg"  width="200" />
+        </div>
+        <div class="text-gray-400 dark:text-gray-400 w-1/3 md:w-auto">
+          <img alt="Reevoy logo" src="/assets/qoala.png"  width="200" />
+        </div>
+        <div class="text-gray-400 dark:text-gray-400 w-1/3 md:w-auto">
+          <img alt="Reevoy logo" src="/assets/martide.png"  width="200" />
+        </div>
+        <div class="mt-9 md:mt-0 text-gray-400 dark:text-gray-400 w-1/3 md:w-auto">
+          <img alt="Reevoy logo" src="/assets/reevoy.png" width="200" />
+        </div>
+     </div>
+    </div>
+  }
 }

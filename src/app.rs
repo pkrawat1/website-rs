@@ -28,7 +28,7 @@ pub fn App(cx: Scope) -> impl IntoView {
                 <Header dark_mode=dark_mode/>
                 <Routes>
                     <Route path="" view=HomePage/>
-                    <Route path="/*any" view=NotFound/>
+                    <Route path="/*any" view=HomePage/>
                 </Routes>
                 <Footer />
               </div>

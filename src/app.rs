@@ -19,7 +19,7 @@ pub fn App(cx: Scope) -> impl IntoView {
         <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
         // sets the document title
-        <Title text="Welcome to Leptos"/>
+        <Title text="Aviabird Technologies Pvt. Ltd."/>
 
         // content for this welcome page
         <Router>

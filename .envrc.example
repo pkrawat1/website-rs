@@ -1,0 +1,5 @@
+export BREVO_API_KEY="xxxxx"
+export SENDER_NAME="xxxxx"
+export SENDER_EMAIL="xxxxx"
+export RECIPIENT_NAME="xxxxx"
+export RECIPIENT_EMAIL="xxxxx"

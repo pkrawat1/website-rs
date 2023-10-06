@@ -1,5 +1,5 @@
-use crate::layout::{header::*, footer::*};
-use crate::pages::{home::*, contact::*};
+use crate::layout::{footer::*, header::*};
+use crate::pages::{contact::*, home::*};
 use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
@@ -15,7 +15,10 @@ pub fn App(cx: Scope) -> impl IntoView {
         // injects a stylesheet into the document <head>
         // id=leptos means cargo-leptos will hot-reload this stylesheet
         <Stylesheet id="leptos" href="/pkg/website_rs.css"/>
-        <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+        <link defer rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          media="none"
+          onload="if(media!=='all')media='all'"  />
 
         // sets the document title
         <Title text="Aviabird Technologies Pvt. Ltd."/>

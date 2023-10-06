@@ -17,7 +17,9 @@ pub async fn send_email(enquiry: Enquiry) -> Result<(), ServerFnError> {
   use reqwest::header;
   use serde_json::json;
   use std::env;
+
   dotenv::dotenv().ok();
+  
   if !(enquiry.name != "" && enquiry.email != "" && enquiry.source != "" && enquiry.body != "") {
     return Err(ServerFnError::ServerError("Please check all the required fields !".to_string()));
   }

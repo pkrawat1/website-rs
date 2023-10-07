@@ -1,5 +1,5 @@
 use crate::layout::{footer::*, header::*};
-use crate::pages::{contact::*, home::*};
+use crate::pages::{contact::*, home::*, blogs::*};
 use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
@@ -31,6 +31,7 @@ pub fn App(cx: Scope) -> impl IntoView {
                 <Routes>
                     <Route path="" view=HomePage/>
                     <Route path="/contact/hire-us" view=HireUsPage/>
+                    <Route path="/blogs" view=BlogsPage/>
                     <Route path="/*any" view=HomePage/>
                 </Routes>
                 <Footer />

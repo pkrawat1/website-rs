@@ -111,7 +111,7 @@ fn FeedItem(cx: Scope, feed: Feed) -> impl IntoView {
         <p class="mb-5 font-light text-gray-500 dark:text-gray-400" inner_html=blog_description(feed.description)></p>
         <div class="flex justify-between items-center">
             <div class="flex items-center space-x-4">
-                <img class="w-7 h-7 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Leos avatar" />
+                <img class="w-10 h-10 rounded-full" src=format!("https://api.multiavatar.com/{}.svg", feed.author.clone()) alt=feed.author.clone() />
                 <span class="font-medium dark:text-white">
                   {feed.author}
                 </span>

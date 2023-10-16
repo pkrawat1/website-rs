@@ -5,13 +5,13 @@ use leptos_meta::*;
 use leptos_router::*;
 
 #[component]
-pub fn App(cx: Scope) -> impl IntoView {
+pub fn App() -> impl IntoView {
     // Provides context that manages stylesheets, titles, meta tags, etc.
-    provide_meta_context(cx);
+    provide_meta_context();
 
-    let dark_mode = create_rw_signal(cx, true);
+    let dark_mode = create_rw_signal(true);
 
-    view! { cx,
+    view! {
         // injects a stylesheet into the document <head>
         // id=leptos means cargo-leptos will hot-reload this stylesheet
         <Stylesheet id="leptos" href="/pkg/website_rs.css"/>
@@ -44,7 +44,7 @@ pub fn App(cx: Scope) -> impl IntoView {
 
 /// 404 - Not Found
 #[component]
-fn NotFound(cx: Scope) -> impl IntoView {
+fn NotFound() -> impl IntoView {
     // set an HTTP status code 404
     // this is feature gated because it can only be done during
     // initial server-side rendering
@@ -55,18 +55,18 @@ fn NotFound(cx: Scope) -> impl IntoView {
     {
         // this can be done inline because it's synchronous
         // if it were async, we'd use a server function
-        let resp = expect_context::<leptos_actix::ResponseOptions>(cx);
+        let resp = expect_context::<leptos_actix::ResponseOptions>();
         resp.set_status(actix_web::http::StatusCode::NOT_FOUND);
     }
 
-    view! { cx,
+    view! {
         <h1>"Not Found"</h1>
     }
 }
 
 #[component]
-fn ComingSoon(cx: Scope) -> impl IntoView {
-    view! {cx,
+fn ComingSoon() -> impl IntoView {
+    view! {
       <div class="flex flex-col h-screen dark:bg-neutral-900 dark:text-white">
         <div class="grid place-items-center w-4/5 mx-auto p-10 my-20 sm:my-auto bg-white-600 border-4 border-indigo-600 bg-opacity-70 rounded-xl shadow-2xl space-y-5 text-center cursor-pointer">
             <i class="fa text-9xl fa-person-digging text-orange-600 dark:fill-white" />

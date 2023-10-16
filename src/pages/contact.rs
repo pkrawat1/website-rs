@@ -83,11 +83,11 @@ pub async fn send_email(enquiry: Enquiry) -> Result<(), ServerFnError> {
 }
 
 #[component]
-pub fn HireUsPage(cx: Scope) -> impl IntoView {
-    let (enquiry, set_enquiry) = create_signal(cx, Enquiry {..Default::default()});
-    let (error, set_error) = create_signal(cx, "".to_string());
+pub fn HireUsPage() -> impl IntoView {
+    let (enquiry, set_enquiry) = create_signal(Enquiry {..Default::default()});
+    let (error, set_error) = create_signal("".to_string());
 
-    view! {cx,
+    view! {
       <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
           <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Contact Us</h2>
           <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
@@ -95,7 +95,7 @@ pub fn HireUsPage(cx: Scope) -> impl IntoView {
           </p>
           <Show
             when=move || { error() != "" }
-            fallback=|_| ""
+            fallback=|| ""
           >
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-5 rounded relative" role="alert">
               <strong class="font-bold">"Holy smokes! "</strong>

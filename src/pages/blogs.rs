@@ -45,15 +45,15 @@ pub async fn blog_feeds(tag: Option<String>) -> Result<Vec<Feed>, ServerFnError>
 }
 
 #[component]
-pub fn BlogsPage(cx: Scope) -> impl IntoView {
-    let load_feeds = create_resource(cx, || (), |_| async move { 
+pub fn BlogsPage() -> impl IntoView {
+    let load_feeds = create_resource(|| (), |_| async move { 
       match blog_feeds(None).await {
         Ok(blog_feeds) => blog_feeds,
         Err(_) => vec![]
       }
     });
 
-    view! {cx,
+    view! {
       <section class="">
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
             <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
@@ -61,7 +61,7 @@ pub fn BlogsPage(cx: Scope) -> impl IntoView {
                 <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">"Innovative Tech Perspectives: Discover the Latest Insights and Expertise from Aviabird's Tech Blog Hub."</p>
             </div>
             <Transition
-                fallback=move || view! {cx, 
+                fallback=move || view! { 
                   <div class="w-full flex justify-center">
                     <span class="animate-ping absolute inline-flex h-7 w-7 rounded-full bg-sky-400 opacity-75"></span>
                   </div>
@@ -71,13 +71,13 @@ pub fn BlogsPage(cx: Scope) -> impl IntoView {
                     {
                         move || {
                           load_feeds
-                            .read(cx)
+                            .get()
                             .unwrap_or(vec![])
                             .into_iter()
-                            .map(|feed| view! {cx,
+                            .map(|feed| view! {
                               <FeedItem feed=feed />
                             })
-                            .collect_view(cx)
+                            .collect_view()
                         }
                     }
                 </div>
@@ -88,7 +88,7 @@ pub fn BlogsPage(cx: Scope) -> impl IntoView {
 }
 
 #[component]
-fn FeedItem(cx: Scope, feed: Feed) -> impl IntoView {
+fn FeedItem(feed: Feed) -> impl IntoView {
   use chrono::{NaiveDateTime};
 
   let parsed_date = NaiveDateTime::parse_from_str(&feed.pubDate, "%Y-%m-%d %H:%M:%S")
@@ -98,8 +98,8 @@ fn FeedItem(cx: Scope, feed: Feed) -> impl IntoView {
   let formatted_date = date_time.format("%d %b").to_string();
 
   
-  view! {cx,
-    <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+  view! {
+    <article class="p-6 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div class="flex justify-between items-center mb-5 text-gray-500">
             <span class="bg-indigo-100 text-indigo-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-indigo-200 dark:text-indigo-800">
                 <i class="fa-regular fa-newspaper fa-xl pr-2" />

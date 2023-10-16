@@ -23,7 +23,7 @@ COPY . .
 # Build the app
 RUN cargo leptos build --release -vv
 
-FROM rustlang/rust:nightly-bullseye as runner
+FROM rustlang/rust:nightly-buster-slim as runner
 # Copy the server binary to the /app directory
 COPY --from=builder /app/target/release/website_rs /app/
 # /target/site contains our JS/WASM/CSS, etc.

@@ -1,17 +1,17 @@
 use leptos::*;
 
 #[component]
-pub fn Header(cx: Scope, dark_mode: RwSignal<bool>) -> impl IntoView {
-    let mobile_menu = create_rw_signal(cx, false);
+pub fn Header(dark_mode: RwSignal<bool>) -> impl IntoView {
+    let mobile_menu = create_rw_signal(false);
     let links: Vec<(&str, &str)> = vec![
         ("Services", "/services"),
         ("Work", "/work"),
         ("Why Aviabird", "/why-aviabird"),
         ("Blogs", "/blogs"),
-        ("Opensource", "/opensource"),
+        ("Opensource", "https://github.com/aviabird"),
     ];
 
-    view! {cx,
+    view! {
           <div class="w-full">
             <nav class="container relative flex flex-wrap items-center justify-between p-8 mx-auto lg:justify-between xl:px-0">
               <div class="flex flex-wrap items-center justify-between w-full lg:w-auto">
@@ -34,14 +34,14 @@ pub fn Header(cx: Scope, dark_mode: RwSignal<bool>) -> impl IntoView {
                 <div class="flex flex-wrap w-full my-5 lg:hidden" class:hidden=move || !mobile_menu()>
                   {
                     links.clone().into_iter()
-                      .map(|(name, url)| view! {cx,
+                      .map(|(name, url)| view! {
                         <a class="w-full px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none"
                           href=url
                         >
                           {name}
                         </a>
                       })
-                      .collect_view(cx)
+                      .collect_view()
                   }
                   <a class="px-6 py-2 mt-2 text-white text-center bg-indigo-600 rounded-md md:ml-5 w-full"
                     href="/contact/hire-us">
@@ -53,7 +53,7 @@ pub fn Header(cx: Scope, dark_mode: RwSignal<bool>) -> impl IntoView {
                 <ul class="items-center justify-end flex-1 pt-6 list-none lg:pt-0 lg:flex">
                   {
                     links.clone().into_iter()
-                      .map(|(name, url)| view! {cx,
+                      .map(|(name, url)| view! {
                         <li class="mr-3 nav__item">
                           <a class="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800"
                             href=url
@@ -62,7 +62,7 @@ pub fn Header(cx: Scope, dark_mode: RwSignal<bool>) -> impl IntoView {
                           </a>
                         </li>
                       })
-                      .collect_view(cx)
+                      .collect_view()
                   }
                 </ul>
               </div>

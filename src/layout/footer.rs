@@ -1,6 +1,6 @@
 use leptos::*;
 #[component]
-pub fn Footer(cx: Scope) -> impl IntoView {
+pub fn Footer() -> impl IntoView {
     let open_source_links = vec![
         ("Angular Spree", "https://github.com/aviabird/angularspree"),
         ("Aviacommerce", "https://github.com/aviacommerce/avia"),
@@ -12,7 +12,7 @@ pub fn Footer(cx: Scope) -> impl IntoView {
     let technologies = vec!["Elixir", "Rust", "Go", "DevOps", "JavaScript"];
     let industries = vec!["E-commerce", "Fintech", "Insurtech", "Weather Intelligence", "Warehousing"];
 
-    view! {cx,
+    view! {
       <div class="relative">
         <div class="container p-8 mx-auto xl:px-0">
           <div
@@ -48,13 +48,13 @@ pub fn Footer(cx: Scope) -> impl IntoView {
                 <legend class="text-xl w-full px-4 py-2 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-trueGray-700">Open Source</legend>
                 {
                   open_source_links.into_iter().map(|(name, url)|
-                    view! {cx,
+                    view! {
                       <a
                         class="w-full px-4 py-2 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-trueGray-700"
                         href=url
                         >{name}</a>
                     }
-                  ).collect_view(cx)
+                  ).collect_view()
                 }
               </div>
             </div>
@@ -65,13 +65,13 @@ pub fn Footer(cx: Scope) -> impl IntoView {
                 </legend>
                 {
                   technologies.into_iter().map(|name|
-                    view! {cx,
+                    view! {
                       <a
                         class="w-full px-4 py-2 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-trueGray-700"
                         href="#"
                         >{name}</a>
                     }
-                  ).collect_view(cx)
+                  ).collect_view()
                 }
               </div>
             </div>
@@ -82,13 +82,13 @@ pub fn Footer(cx: Scope) -> impl IntoView {
                 </legend>
                 {
                   industries.into_iter().map(|name|
-                    view! {cx,
+                    view! {
                       <a
                         class="w-full px-4 py-2 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-trueGray-700"
                         href="#"
                         >{name}</a>
                     }
-                  ).collect_view(cx)
+                  ).collect_view()
                 }
               </div>
             </div>

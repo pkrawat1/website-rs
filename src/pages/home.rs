@@ -1,8 +1,8 @@
 use leptos::*;
 
 #[component]
-pub fn HomePage(cx: Scope) -> impl IntoView {
-    view! { cx,
+pub fn HomePage() -> impl IntoView {
+    view! {
       <Banner />
       <TrustedBy />
       <Benifits />
@@ -11,8 +11,8 @@ pub fn HomePage(cx: Scope) -> impl IntoView {
 }
 
 #[component]
-fn Banner(cx: Scope) -> impl IntoView {
-    view! {cx,
+fn Banner() -> impl IntoView {
+    view! {
         <div class="container p-8 mx-auto xl:px-0 flex flex-wrap ">
          <div class="flex items-center w-full lg:w-1/2">
             <div class="max-w-2xl mb-8">
@@ -31,8 +31,8 @@ fn Banner(cx: Scope) -> impl IntoView {
 }
 
 #[component]
-fn TrustedBy(cx: Scope) -> impl IntoView {
-    view! {cx,
+fn TrustedBy() -> impl IntoView {
+    view! {
       <div class="container mx-auto flex flex-col justify-center">
        <div class="-mb-5 mt-5 md:mb-0 text-xl text-center text-gray-700 dark:text-white">
           "Trusted by customers worldwide"
@@ -59,8 +59,8 @@ fn TrustedBy(cx: Scope) -> impl IntoView {
 }
 
 #[component]
-fn Benifits(cx: Scope) -> impl IntoView {
-    view! {cx,
+fn Benifits() -> impl IntoView {
+    view! {
       <div class="container p-8 mx-auto xl:px-0 flex w-full flex-col mt-4 items-center justify-center text-center">
         <div class="text-sm font-bold tracking-wider text-indigo-600 uppercase">
           "Aviabird Benifits"
@@ -76,8 +76,8 @@ fn Benifits(cx: Scope) -> impl IntoView {
 }
 
 #[component]
-fn HighlightBenifits(cx: Scope) -> impl IntoView {
-    view! {cx,
+fn HighlightBenifits() -> impl IntoView {
+    view! {
       <div class="container p-8 mx-auto xl:px-0 flex flex-wrap mb-20 lg:gap-10 lg:flex-nowrap ">
         <div class="flex items-center justify-center w-full lg:w-1/2 ">
           <div><img alt="Benefits" width="521" height="548" src="assets/highlight.webp" /></div>
